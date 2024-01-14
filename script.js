@@ -5,26 +5,23 @@ let resetBtn=$.querySelector(".reset");
 let changeBtn=$.querySelector(".change");
 let userInput=$.querySelector("#input");
 let resultElem=$.querySelector(".result");
-console.log(userInput.getAttribute("placeholder"))
 function convert(){
-    console.log(+userInput.value);
     let convertResult;
-    if(userInput.value===""){
-        resultElem.innerHTML="Write correct value!";
-        resultElem.style.color="#E65100";
-        resultElem.style.visibility="visible";
-    }else{
-        if(userInput.getAttribute("placeholder")==="°C"){
-            convertResult=(userInput.value*(9/5)+32).toFixed(2);
-            console.log(convertResult);
-            resultElem.innerHTML=userInput.value+" °C to "+convertResult+" F";
-            resultElem.style.visibility="visible";
-        }else{
-            convertResult=(userInput.value-32)*(5/9).toFixed(2);
-            resultElem.innerHTML=userInput.value+" F to "+convertResult+" °C";
-            resultElem.style.visibility="visible";
-        };
-    };
+    if (-500 < +userInput.value && +userInput.value < 500 && userInput.value !== "" ) {
+        if (userInput.getAttribute("placeholder") === "°C") {
+          convertResult = (+userInput.value * (9 / 5) + 32).toFixed(2);
+          resultElem.innerHTML = userInput.value + " °C to " + convertResult + " F";
+          resultElem.style.visibility = "visible";
+        } else {
+          convertResult = (+userInput.value - 32) * (5 / 9).toFixed(2);
+          resultElem.innerHTML = userInput.value + " F to " + convertResult + " °C";
+          resultElem.style.visibility = "visible";
+        }
+      } else {
+        resultElem.innerHTML = "The number of input is incorrect. Try again.";
+        resultElem.style.color = "#E65100";
+        resultElem.style.visibility = "visible";
+      };
 };
 function reset(){
     userInput.value=''
